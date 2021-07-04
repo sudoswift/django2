@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <title>task list</title>
+</head>
+<body>
+    <h1>My To Do list</h1>
+    <table>
+        <tr>
+            <th>아이템</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{task.title}}</td>
+        </tr>
+        {% empty %}
+        <h3>리스트에 아이템이 없습니다만??</h3>
+        {% endfor %}
+    </table>
+</body>
+</html>
