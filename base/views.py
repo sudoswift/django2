@@ -1,6 +1,9 @@
+from .models import Task
+from typing import List
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, request
+from django.views.generic.list import ListView
 
-def rename(request):
-    return HttpResponse('To Do List')
+class TaskList(ListView):
+    model = Task

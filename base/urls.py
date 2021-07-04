@@ -1,8 +1,8 @@
-from django.urls import path, include
-from . import views
+from django.urls import path
+from .views import TaskList
 
 app_name = 'base'
 
 urlpatterns = [
-    path('', views.rename, name='test')
+    path('', TaskList.as_view(), name='tasks')
 ]
