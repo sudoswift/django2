@@ -16,4 +16,4 @@ class TaskDetail(DetailView):
 class TaskCreate(CreateView):
     model = Task
     fields = '__all__'
-    success_url = reverse_lazy('base:tasks') #석세스유알엘은 특정 행동을 한 후 어떤 페이지로 이동할 것인지 지정해주는 속성이다. reverse와 reverselazy 함수는 urls.py에서 appname을 지정해줘야 사용할 수 있다. 이 name을 지정하면 urls.py가 자동으로 해당 url로 매핑해준다. view의 generic을 사용할때는 reverse가 아닌 reverselazy를 사용해야한다.
+    success_url = reverse_lazy('base:tasks') #석세스유알엘은 특정 행동을 한 후 어떤 페이지로 이동할 것인지 지정해주는 속성이다. reverse와 reverselazy 함수는 urls.py에서 appname을 지정해줘야 사용할 수 있다. 이 name을 지정하면 urls.py가 자동으로 해당 url로 매핑해준다. view의 generic을 사용할때는 reverse가 아닌 reverselazy를 사용해야한다. 경로를 appname까지 정확하게 맞춰줘야 reverselazy가 작동한다.
