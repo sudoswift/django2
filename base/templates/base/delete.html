@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete View</title>
+</head>
+<body>
+    <a href="{% url 'base:tasks' %}">돌아가기</a>
+    <form method="POST">{% csrf_token %}<!-- form의 메소드를 포스트로 지정해줘야 정상적으로 삭제가 작동한다 -->
+        <p>"{{task}}" 이거 진짜 지우실 겁니까. 휴먼?</p>
+        <input type="submit" value="삭제">
+    </form>
+</body>
+</html>

@@ -13,12 +13,14 @@
             <th>아이템</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         {% for task in tasks %}
         <tr>
             <td>{{task.title}}</td>
-            <td><a href="{% url 'base:task' task.id %}">뷰 생성</a></td>
-            <td><a href="{% url 'base:update' task.id %}">뷰 수정</a></td>
+            <td><a href="{% url 'base:task' task.id %}">내용보기</a></td>
+            <td><a href="{% url 'base:update' task.id %}">내용수정</a></td>
+            <td><a href="{% url 'base:delete' task.id %}">삭제</a></td>
         </tr>
         {% empty %}
         <h3>리스트에 아이템이 없습니다만??</h3>
