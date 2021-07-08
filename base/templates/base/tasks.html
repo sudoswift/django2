@@ -6,6 +6,15 @@
     <title>ListView</title>
 </head>
 <body>
+
+    {% if request.user.is_authenticated %}
+    <p>{{request.user}} 님 어서오세요!</p>
+    <a href="{% url 'base:logout' %}">로그아웃</a>
+    {% else %}
+    <a href="{% url 'base:login' %}">로그인하기</a>
+    {% endif %}
+
+    <hr>
     <h1>My To Do list</h1>
     <a href="{% url 'base:create' %}">아이템 추가하기</a>
     <table>

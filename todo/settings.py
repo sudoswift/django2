@@ -114,6 +114,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_URL = 'base:login' #이거를 설정해줘야 권한이 있는(로그인 된) 유저들만이 페이지에 접근할 수 있다.
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
