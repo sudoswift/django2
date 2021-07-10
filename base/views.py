@@ -1,5 +1,5 @@
 from .models import Task
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, request
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
@@ -18,7 +18,6 @@ class CustomLoginView(LoginView):
 class RegisterView(FormView):
     template_name = 'base/register.html'
     form_class = UserCreationForm
-    redirect_authenticated_user = True
     success_url = reverse_lazy('base:tasks')
     def form_valid(self, form): #회원가입이 성공적으로 작동했다면 자동으로 로그인되게 하는 함수
         user = form.save() 
@@ -26,6 +25,10 @@ class RegisterView(FormView):
             login(self.request, user)
         return super(RegisterView, self).form_valid(form)
 
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('base:tasks')
+        return super(RegisterView, self).get(*args, **kwargs)
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Task #class based view에서 model을 models.py에서 설정한 모델이름으로 설정해주면 그 해당 모델을 이 view에서 쓸 수 있다.
