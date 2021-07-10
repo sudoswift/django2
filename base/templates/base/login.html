@@ -5,12 +5,15 @@
     <title>Login Page</title>
 </head>
 <body>
-    
+
 <h1>Login</h1>
 <form method="POST">{% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="로그인">
 </form>
+
+<p>아직 계정이 없으십니까 휴먼??</p>
+<a href="{% url 'base:register' %}">회원가입</a>
 
 </body>
 </html>

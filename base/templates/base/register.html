@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 페이지</title>
+</head>
+<body>
+    
+<h1>회원가입</h1>
+<form method="POST">{% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="회원가입하기">
+</form>
+
+<p>이미 계정이 있으십니까 휴먼??</p>
+<a href="{% url 'base:login' %}">로그인 하기</a>
+
+</body>
+</html>

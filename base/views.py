@@ -1,10 +1,12 @@
 from .models import Task
 from django.shortcuts import render
 from django.http import HttpResponse, request
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin # 로그인을 하지 않은 회원에게 특정 뷰를 보여주고 싶지 않다면 다음 loginrequiredmixin을 import 해준 후 해당 뷰의 class의 파라미터에 loginrequiredmixin을 넣어준다.
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 class CustomLoginView(LoginView):
      template_name = 'base/login.html'
@@ -12,6 +14,17 @@ class CustomLoginView(LoginView):
      def get_success_url(self):
         return reverse_lazy('base:tasks')
      redirect_authenticated_user = True #이미 로그인이 돼 authenticated된 유저의 경우 로그인페이지에 접근하지 못하게 한다. 기본값이 False 이므로 꼭 true로 변경해줘야 한다.
+
+class RegisterView(FormView):
+    template_name = 'base/register.html'
+    form_class = UserCreationForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('base:tasks')
+    def form_valid(self, form): #회원가입이 성공적으로 작동했다면 자동으로 로그인되게 하는 함수
+        user = form.save() 
+        if user is not None:
+            login(self.request, user)
+        return super(RegisterView, self).form_valid(form)
 
 
 class TaskList(LoginRequiredMixin, ListView):
