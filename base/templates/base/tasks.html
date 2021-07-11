@@ -17,6 +17,12 @@
     <hr>
     <h1>My To Do list</h1>
     <a href="{% url 'base:create' %}">아이템 추가하기</a>
+
+    <form method="GET">
+        <input type="text" name="lookingfor" value="{{lookingfor}}">
+        <input type="submit" value="내용찾기">
+    </form>
+
     <table>
         <tr>
             <th>아이템</th>

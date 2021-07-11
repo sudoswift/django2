@@ -38,7 +38,14 @@ class TaskList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user = self.request.user)
         context['count'] = context['tasks'].filter(complete=False).count()
+        lookingfor = self.request.GET.get('lookingfor') or ''
+        if lookingfor:
+            context['tasks'] = context['tasks'].filter(title__icontains = lookingfor)
+
+        context['lookingfor'] = lookingfor
         return context
+
+    
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
