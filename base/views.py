@@ -40,7 +40,7 @@ class TaskList(LoginRequiredMixin, ListView):
         context['count'] = context['tasks'].filter(complete=False).count()
         lookingfor = self.request.GET.get('lookingfor') or ''
         if lookingfor:
-            context['tasks'] = context['tasks'].filter(title__icontains = lookingfor)
+            context['tasks'] = context['tasks'].filter(title__istartswith = lookingfor)
 
         context['lookingfor'] = lookingfor
         return context
